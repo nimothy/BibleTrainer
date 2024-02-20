@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  bool _sansForgettica = false;
+  bool _sansForgetica = false;
   String _reviewPeriod = "7";
 
   @override
@@ -22,7 +22,7 @@ class _HomeScreen extends State<HomeScreen> {
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _sansForgettica = prefs.getBool('settings_sansForgettica') ?? false;
+      _sansForgetica = prefs.getBool('settings_sansForgetica') ?? false;
       _reviewPeriod = prefs.getString('settings_reviewPeriod') ?? "7";
     });
   }
@@ -32,13 +32,16 @@ class _HomeScreen extends State<HomeScreen> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: const TextStyle(fontFamily: 'sansForgetica'),
+        ),
       ),
       body: Center(
           child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         ListTile(
             title: const Text('SanForget setting…'),
-            subtitle: Text(_sansForgettica.toString())),
+            subtitle: Text(_sansForgetica.toString())),
         ListTile(
             title: const Text('Review period setting…'),
             subtitle: Text(_reviewPeriod.toString())),

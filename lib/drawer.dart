@@ -14,7 +14,10 @@ class NavDrawer extends StatelessWidget {
             color: Colors.teal,
           ),
           child: Text("BibleTrainer",
-              style: TextStyle(color: Colors.white, fontSize: 24)),
+              style: TextStyle(
+                  fontFamily: 'sansForgetica',
+                  color: Colors.white,
+                  fontSize: 24)),
         ),
         ListTile(
             leading: Icon(Icons.list),

@@ -13,7 +13,7 @@ class SettingRoute extends StatefulWidget {
 }
 
 class _SettingRouteState extends State<SettingRoute> {
-  bool _sansForgettica = false;
+  bool _sansForgetica = false;
   bool _theLord = false;
   bool _emojiMode = false;
   bool _leftyMode = false;
@@ -29,7 +29,7 @@ class _SettingRouteState extends State<SettingRoute> {
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _sansForgettica = prefs.getBool('settings_sansForgettica') ?? false;
+      _sansForgetica = prefs.getBool('settings_sansForgetica') ?? false;
       _theLord = prefs.getBool('settings_theLord') ?? false;
       _emojiMode = prefs.getBool('settings_emojiMode') ?? false;
       _leftyMode = prefs.getBool('settings_leftyMode') ?? false;
@@ -65,10 +65,10 @@ class _SettingRouteState extends State<SettingRoute> {
           title: const Text('Use Sans Forgetica font'),
           subtitle: const Text(
               'Sans Forgetica is a font designed with the principles of cognitive psychology to help memorisation.'),
-          value: _sansForgettica,
+          value: _sansForgetica,
           onChanged: (bool value) {
-            _sansForgettica = !_sansForgettica;
-            _toggleSetting("settings_sansForgettica");
+            _sansForgetica = !_sansForgetica;
+            _toggleSetting("settings_sansForgetica");
           },
         ),
         SwitchListTile(

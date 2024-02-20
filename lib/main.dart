@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(title: 'Home'),
+      home: const HomeScreen(title: 'BibleTrainer'),
     );
   }
 }

@@ -11,17 +11,17 @@ Find out more at [www.bibletrainer.co.uk](https://www.bibletrainer.co.uk).
 
 ## Rebuild roadmap
 
-[x] Save preferences
-[x] Custom font
-[ ] Add passage to list
-[ ] Search for passage (add add)
-[ ] Display passage
-[ ] Progressively reveal passage
-[ ] YHWH swap
-[ ] Emoji mode
-[ ] Lefty mode
-[ ] Sort order
-[ ] Audio player
+- [x] Save preferences
+- [x] Custom font
+- [ ] Add passage to list
+- [ ] Search for passage (add add)
+- [ ] Display passage
+- [ ] Progressively reveal passage
+- [ ] YHWH swap
+- [ ] Emoji mode
+- [ ] Lefty mode
+- [ ] Sort order
+- [ ] Audio player
 
 
 ## Contributing and feature requests

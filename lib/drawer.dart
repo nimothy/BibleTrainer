@@ -61,7 +61,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingRoute()),
+                MaterialPageRoute(builder: (context) => SettingRoute()),
               );
               print('Navigation -> Settings');
             })

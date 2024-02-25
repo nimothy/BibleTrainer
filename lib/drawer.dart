@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bibletrainer/home.dart';
 import 'package:bibletrainer/about.dart';
-import 'package:bibletrainer/passageLookup.dart';
+import 'package:bibletrainer/book_list.dart';
 import 'package:bibletrainer/settings.dart';
 
 class NavDrawer extends StatelessWidget {

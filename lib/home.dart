@@ -1,7 +1,7 @@
 import 'package:bibletrainer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:bibletrainer/passageLookup.dart';
+import 'package:bibletrainer/book_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, this.title = "BibleTrainer"});

@@ -17,11 +17,18 @@ Find out more at [www.bibletrainer.co.uk](https://www.bibletrainer.co.uk).
 - [ ] Search for passage (add add)
 - [ ] Display passage
 - [ ] Progressively reveal passage
+- [ ] Suggested topics
 - [ ] YHWH swap
 - [ ] Emoji mode
 - [ ] Lefty mode
 - [ ] Sort order
 - [ ] Audio player
+
+  ### Future features
+
+  - [ ] Fill in the blanks
+  - [ ] Type along
+  - [ ] Speak along
 
 
 ## Contributing and feature requests

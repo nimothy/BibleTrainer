@@ -89,19 +89,19 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "bibletrainer" "\0"
-            VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "bibletrainer" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "bibletrainer.exe" "\0"
-            VALUE "ProductName", "bibletrainer" "\0"
-            VALUE "ProductVersion", VERSION_AS_STRING "\0"
+            VALUE "CompanyName', 'chapterCount': "com.example" "\0"
+            VALUE "FileDescription', 'chapterCount': "bibletrainer" "\0"
+            VALUE "FileVersion', 'chapterCount': VERSION_AS_STRING "\0"
+            VALUE "InternalName', 'chapterCount': "bibletrainer" "\0"
+            VALUE "LegalCopyright', 'chapterCount': "Copyright (C) 2024 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename', 'chapterCount': "bibletrainer.exe" "\0"
+            VALUE "ProductName', 'chapterCount': "bibletrainer" "\0"
+            VALUE "ProductVersion', 'chapterCount': VERSION_AS_STRING "\0"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x409, 1252
+        VALUE "Translation', 'chapterCount': 0x409, 1252
     END
 END
 

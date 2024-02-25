@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bibletrainer/home.dart';
 import 'package:bibletrainer/about.dart';
+import 'package:bibletrainer/passageLookup.dart';
 import 'package:bibletrainer/settings.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -37,14 +38,19 @@ class NavDrawer extends StatelessWidget {
             title: Text("Add passage"),
             onTap: () {
               Navigator.pop(context);
-              print('TODO - Add Passage');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const PassageLookupRoute()),
+              );
+              print('Navigation - Passage Lookup');
             }),
         ListTile(
             leading: Icon(Icons.search),
             title: Text("Search for passage"),
             onTap: () {
               Navigator.pop(context);
-              print('TODO - Search Passage');
+              print('Navigation -> Passage Search');
             }),
         ListTile(
             leading: Icon(Icons.help_outline),

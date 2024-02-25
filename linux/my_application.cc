@@ -70,7 +70,7 @@ static gboolean my_application_local_command_line(GApplication* application, gch
 
   g_autoptr(GError) error = nullptr;
   if (!g_application_register(application, nullptr, &error)) {
-     g_warning("Failed to register: %s", error->message);
+     g_warning("Failed to register: %s', 'chapterCount': error->message);
      *exit_status = 1;
      return TRUE;
   }
@@ -98,7 +98,7 @@ static void my_application_init(MyApplication* self) {}
 
 MyApplication* my_application_new() {
   return MY_APPLICATION(g_object_new(my_application_get_type(),
-                                     "application-id", APPLICATION_ID,
-                                     "flags", G_APPLICATION_NON_UNIQUE,
+                                     "application-id', 'chapterCount': APPLICATION_ID,
+                                     "flags', 'chapterCount': G_APPLICATION_NON_UNIQUE,
                                      nullptr));
 }

@@ -39,14 +39,18 @@ class _HomeScreen extends State<HomeScreen> {
         ),
       ),
       body: Center(
-          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-        ListTile(
-            title: const Text('SanForget setting…'),
-            subtitle: Text(_sansForgetica.toString())),
-        ListTile(
-            title: const Text('Review period setting…'),
-            subtitle: Text(_reviewPeriod.toString())),
-      ])),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            ListTile(
+                title: const Text('SanForget setting…'),
+                subtitle: Text(_sansForgetica.toString())),
+            ListTile(
+                title: const Text('Review period setting…'),
+                subtitle: Text(_reviewPeriod.toString())),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.pop(context);
@@ -54,7 +58,6 @@ class _HomeScreen extends State<HomeScreen> {
             context,
             MaterialPageRoute(builder: (context) => const PassageLookupRoute()),
           );
-          print('Navigation -> About');
         },
         label: const Text('Add passage'),
         icon: const Icon(Icons.add),

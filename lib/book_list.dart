@@ -1,4 +1,5 @@
 import 'package:bibletrainer/drawer.dart';
+import 'package:bibletrainer/passage_picker.dart';
 import 'package:flutter/material.dart';
 import 'data/bible_info.dart';
 
@@ -69,11 +70,20 @@ class _BooksState extends State<Books> {
           body: GridView.count(
             crossAxisCount: 6,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: List.generate(book.chapters, (index) {
               return TextButton(
                 onPressed: () {
-                  print(book.title + ' -  ' + (index + 1).toString());
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PassagePicker(
+                        bookTitle: book.title,
+                        bookChapter: index + 1,
+                      ),
+                    ),
+                  );
                 },
                 child: Text((index + 1).toString()),
               );

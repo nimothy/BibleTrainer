@@ -20,6 +20,23 @@ class PassagePicker extends StatefulWidget {
 class _PassagePickerState extends State<PassagePicker> {
   late List<dynamic> _data = [];
 
+  bool get areVersesSelected {
+    if (_data.isEmpty) {
+      return false;
+    }
+    // Use any() method to check if any element satisfies the condition
+    return _data.any((element) => element['selected'] == true);
+  }
+
+  List<dynamic> get selectedVerses {
+    if (_data.isEmpty) {
+      return [];
+    }
+
+    // Use where() method to filter the list based on the condition
+    return _data.where((element) => element['selected'] == true).toList();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +76,10 @@ class _PassagePickerState extends State<PassagePicker> {
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body)['verses'];
 
+        for (var item in jsonData) {
+          item['selected'] = false;
+        }
+
         setState(() {
           _data = jsonData;
         });
@@ -70,7 +91,17 @@ class _PassagePickerState extends State<PassagePicker> {
       print('Error fetching data: $e');
     }
 
+    // Rerender
     setState(() {});
+  }
+
+  Future<void> _toggleVerse(int index) async {
+    _data[index]['selected'] = !_data[index]['selected'];
+    setState(() {});
+  }
+
+  void _addVerses() {
+    print(selectedVerses);
   }
 
   @override
@@ -91,9 +122,8 @@ class _PassagePickerState extends State<PassagePicker> {
                 padding: EdgeInsets.only(bottom: 80),
                 itemBuilder: (context, index) {
                   final item = _data[index];
-                  // Customize how each item is displayed
                   return CheckboxListTile(
-                      value: true,
+                      value: item['selected'],
                       title: RichText(
                           text: TextSpan(
                         style: DefaultTextStyle.of(context).style,
@@ -115,22 +145,18 @@ class _PassagePickerState extends State<PassagePicker> {
                           )
                         ],
                       )),
-                      // title: Text(
-                      //   '${index + 1}: ${item['text']}',
-                      //   style: DefaultTextStyle.of(context)
-                      //       .style
-                      //       .apply(fontSizeFactor: 0.9),
-                      // ),
                       onChanged: (bool? value) {
                         // Handle tap on item
+                        _toggleVerse(index);
                       });
                 },
               ),
             ),
-      floatingActionButton: _data.isNotEmpty
+      floatingActionButton: _data.isNotEmpty && areVersesSelected
           ? FloatingActionButton.extended(
               onPressed: () {
                 //todo
+                _addVerses();
               },
               label: const Text('Add verses'),
               icon: const Icon(Icons.add))

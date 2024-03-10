@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:bibletrainer/home.dart';
 import 'package:bibletrainer/data/init.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(BibleTrainerApp());
 
-class MyApp extends StatefulWidget {
+class BibleTrainerApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _BibleTrainerAppState createState() => _BibleTrainerAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  // const MyApp({super.key});
+class _BibleTrainerAppState extends State<BibleTrainerApp> {
+  // const BibleTrainerApp({super.key});
 
   final Future _init = Init.initialize();
 

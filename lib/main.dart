@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:bibletrainer/home.dart';
+import 'package:bibletrainer/data/init.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _MyAppState extends State<MyApp> {
+  // const MyApp({super.key});
+
+  final Future _init = Init.initialize();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'BibleTrainer',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal.shade900),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'BibleTrainer'),
+      home: FutureBuilder(
+        future: _init,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return const MyHomePage(title: 'BibleTrainer');
+          } else {
+            return const Material(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

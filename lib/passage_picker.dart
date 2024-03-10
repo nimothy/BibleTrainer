@@ -2,6 +2,11 @@ import 'package:bibletrainer/drawer.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:bibletrainer/home.dart';
+
+import 'package:get_it/get_it.dart';
+import 'package:bibletrainer/data/passage.dart';
+import 'package:bibletrainer/data/passage_repo.dart';
 
 class PassagePicker extends StatefulWidget {
   final String bookTitle;
@@ -19,6 +24,8 @@ class PassagePicker extends StatefulWidget {
 
 class _PassagePickerState extends State<PassagePicker> {
   late List<dynamic> _data = [];
+  PassageRepo _passageRepo = GetIt.I.get();
+  bool _isMounted = false;
 
   bool get areVersesSelected {
     if (_data.isEmpty) {
@@ -40,7 +47,14 @@ class _PassagePickerState extends State<PassagePicker> {
   @override
   void initState() {
     super.initState();
+    _isMounted = true;
     fetchData();
+  }
+
+  @override
+  void dispose() {
+    _isMounted = false;
+    super.dispose();
   }
 
   Future<void> fetchData() async {
@@ -100,8 +114,47 @@ class _PassagePickerState extends State<PassagePicker> {
     setState(() {});
   }
 
-  void _addVerses() {
+  Future<void> _addVerses() async {
     print(selectedVerses);
+
+    // TODO: Fix this up– it's a mess and doesn't handle the 101 edge cases
+    String bookName = selectedVerses.first["book_name"];
+    int chapter = selectedVerses.first["chapter"];
+    List<int> verses =
+        selectedVerses.map<int>((entry) => entry["verse"]).toList();
+    int firstVerse = selectedVerses.first["verse"];
+    int lastVerse = selectedVerses.last["verse"];
+
+    String passageTitle = "$bookName $chapter:$firstVerse";
+
+    if (firstVerse != lastVerse) {
+      String versesString = _formatVerses(verses);
+      passageTitle = "$bookName $chapter:$versesString";
+    }
+    print(passageTitle);
+
+    final newPassage = Passage(title: passageTitle, verses: selectedVerses);
+    await _passageRepo.insertPassage(newPassage);
+  }
+
+  String _formatVerses(List<int> verses) {
+    // Check if the verses are consecutive
+    bool consecutive = true;
+    for (int i = 0; i < verses.length - 1; i++) {
+      if (verses[i] + 1 != verses[i + 1]) {
+        consecutive = false;
+        break;
+      }
+    }
+
+    // Format verses accordingly
+    if (consecutive) {
+      // If consecutive, display as a range
+      return '${verses.first}-${verses.last}';
+    } else {
+      // If non-consecutive, display as individual verse numbers separated by commas
+      return verses.join(',');
+    }
   }
 
   @override
@@ -154,9 +207,21 @@ class _PassagePickerState extends State<PassagePicker> {
             ),
       floatingActionButton: _data.isNotEmpty && areVersesSelected
           ? FloatingActionButton.extended(
-              onPressed: () {
-                //todo
-                _addVerses();
+              onPressed: () async {
+                if (!_isMounted) {
+                  return;
+                }
+                await _addVerses();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Verses added successfully'),
+                  ),
+                );
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
               },
               label: const Text('Add verses'),
               icon: const Icon(Icons.add))

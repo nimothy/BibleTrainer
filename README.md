@@ -19,6 +19,8 @@ Bible Trainer is built on top of the [Ionic Framework](https://ionicframework.co
 
 To get started…
 
+At the moment, this project requires NodeJS v6, NPM v3 and Python 2.7
+
 1. Check out this repo
 2. Install Ionic globally: `npm install -g ionic`
 3. Install NPM packages: `npm install`

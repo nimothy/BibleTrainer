@@ -21,6 +21,18 @@ To get started…
 
 At the moment, this project requires NodeJS v6, NPM v3 and Python 2.7
 
+### VERY IMPORANT PLEASE READ ###
+
+In order to deploy to iOS, currently you must be on NodeJS version 14, LTS is fine. 
+
+1  vim ./plugins/cordova-sqlite-storage/scripts/beforePluginInstall.js replace with var Q = require('q')
+2. vim ./platforms/ios/cordova/lib/list-emulator-build-targets, fix issue with defaultTarget as shown by build //TODO: BEFORE AND AFTER NEEDED
+3. vim platforms/ios/cordova/lib/build.js, fix issue with defaultValue as shown by build //TODO: BEFORE AND AFTER NEEDED
+4. ionic cordova emulate ios --target="DB94866E-0E5C-44C9-A804-B8F87E5793B3" --verbose
+
+
+
+
 1. Check out this repo
 2. Install Ionic globally: `npm install -g ionic`
 3. Install NPM packages: `npm install`

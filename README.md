@@ -19,24 +19,12 @@ Bible Trainer is built on top of the [Ionic Framework](https://ionicframework.co
 
 To get started…
 
-At the moment, this project requires NodeJS v6, NPM v3 and Python 2.7
-
-### VERY IMPORANT PLEASE READ ###
-
-In order to deploy to iOS, currently you must be on NodeJS version 14, LTS is fine. 
+At the moment, this project requires NodeJS v14 and Python 2.7
 
 1. Check out this repo
-2. Install Ionic globally: `npm install -g ionic`
+2. Install Ionic globally: `npm install -g ionic cordova`
 3. Install NPM packages: `npm install`
 4. Run the ionic server: `npm run start`
-
-In order to deploy to iOS, currently you must be on NodeJS version 14, LTS is fine. 
-
-1  vim ./plugins/cordova-sqlite-storage/scripts/beforePluginInstall.js replace with var Q = require('q')
-2. vim ./platforms/ios/cordova/lib/list-emulator-build-targets, fix issue with defaultTarget as shown by build //TODO: BEFORE AND AFTER NEEDED
-3. vim platforms/ios/cordova/lib/build.js, fix issue with defaultValue as shown by build //TODO: BEFORE AND AFTER NEEDED
-4. ionic cordova emulate ios --target="DB94866E-0E5C-44C9-A804-B8F87E5793B3" --verbose
-
 
 Environment vars are stored in `src/environments`. For deployment you will need to create a file `environment.prod.ts` with relevant keys in it.
 
@@ -59,22 +47,3 @@ Then on the CLI run: `ionic cordova run android --prod`
 5. Click the play button in Xcode to try to run your app
 
 Get errors? Read the [Ionic documentation](https://ionicframework.com/docs/intro/deploying).
-
-# Nim's notes that may be quite useful:
-
-```bash
-nvm use lts/fermium
-git switch build24
-npm i
-npm run dev
-
-vim ./plugins/cordova-sqlite-storage/scripts/beforePluginInstall.js
-# Update line: 13, from `var Q = context.requireCordovaModule('q'); to `var Q = require('q');
-
-vim ./platforms/ios/cordova/lib/list-emulator-build-targets
-# Update line: 54, from `device.availability.toLowerCase().indexOf('unavailable') < 0) {` to `device.availability && device.availability.toLowerCase().indexOf('unavailable') < 0) {`
-
-vim platforms/ios/cordova/lib/build.js
-# Update line: 130, from `emulatorTarget = defaultTarget.name;' to 'emulatorTarget = 'iPhone 14';`
-ionic cordova emulate ios --target="DB94866E-0E5C-44C9-A804-B8F87E5793B3" --verbose
-```
